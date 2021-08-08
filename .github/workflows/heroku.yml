@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      - test-skip-heroku
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v2
       - name: Login to Heroku Container registry

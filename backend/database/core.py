@@ -125,7 +125,6 @@ def create_database(
         cursor.execute(f"CREATE DATABASE {database};")
     except psycopg2.errors.lookup("42P04"):
         click.echo(f"Database {database!r} already exists.")
-        cursor.execute("ROLLBACK")
     else:
         click.echo(f"Created database {database!r}.")
 
@@ -188,6 +187,5 @@ def delete_database(conn: connection, test_db: bool):
         cursor.execute(f"DROP DATABASE {database};")
     except psycopg2.errors.lookup("3D000"):
         click.echo(f"Database {database!r} does not exist.")
-        cursor.execute("ROLLBACK")
     else:
         click.echo(f"Database {database!r} was deleted.")
